@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders title and default count", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByTestId("title")).toHaveTextContent("Hello World");
+  expect(screen.getByTestId("count")).toHaveTextContent("Clicked 0 times");
+});
+
+test("increments count on button click", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+  const button = screen.getByRole("button", { name: /increment/i });
+  await user.click(button);
+  expect(screen.getByTestId("count")).toHaveTextContent("Clicked 1 times");
 });
