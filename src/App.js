@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div>
       <h1 data-testid="title">Hello World</h1>
-      <p data-testid="count">Clicked {count} times</p>
+      <p data-testid="count">Clickedd {count} times</p>
       <button onClick={() => setCount(c => c + 1)}>Increment</button>
     </div>
   );
